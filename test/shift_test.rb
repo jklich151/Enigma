@@ -26,5 +26,4 @@ class ShiftTest < Minitest::Test
 
     assert_equal expected, shift.key_split
   end
-  
 end
