@@ -13,4 +13,18 @@ class Shift
     end
     doubles
   end
+
+  def date_split
+    square = date.to_i ** 2
+    last_4 = square.to_s[-4..-1].split("")
+    last_4.map do |last|
+      last.to_i
+    end
+  end
+
+  def combine
+    both = []
+    key_split.each_index { |i| both[i] = key_split[i] + date_split[i] }
+    both
+  end
 end

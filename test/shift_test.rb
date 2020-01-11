@@ -46,4 +46,22 @@ class ShiftTest < Minitest::Test
     assert shift1.date == shift2.date
     assert shift.date == shift2.date
   end
+
+  def test_split_date
+    shift = Shift.new
+
+    shift.stubs(:date => "040895")
+    expected = [1,0,2,5]
+
+    assert_equal expected, shift.date_split
+  end
+
+  def test_combine_date_and_key
+    shift = Shift.new
+
+    shift.stubs(:key => "12345")
+    shift.stubs(:date => "040895")
+    
+    assert_equal [13,23,36,50], shift.combine
+  end
 end
