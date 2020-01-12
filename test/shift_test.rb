@@ -61,7 +61,13 @@ class ShiftTest < Minitest::Test
 
     shift.stubs(:key => "12345")
     shift.stubs(:date => "040895")
-    
+
     assert_equal [13,23,36,50], shift.combine
+  end
+
+  def test_message
+    shift = Shift.new
+
+    assert_equal ['h','i',' ','r','u','b','y','!'], shift.message('Hi Ruby!')
   end
 end

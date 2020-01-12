@@ -27,4 +27,8 @@ class Shift
     key_split.each_index { |i| both[i] = key_split[i] + date_split[i] }
     both
   end
+
+  def message(greeting)
+    greeting.downcase.split(//)
+  end
 end
