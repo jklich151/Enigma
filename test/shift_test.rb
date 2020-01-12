@@ -67,7 +67,29 @@ class ShiftTest < Minitest::Test
 
   def test_message
     shift = Shift.new
+    message = 'Hi Ruby!'
 
-    assert_equal ['h','i',' ','r','u','b','y','!'], shift.message('Hi Ruby!')
+    assert_equal ['h','i',' ','r','u','b','y','!'], shift.message(message)
+  end
+
+  def test_create_shift_for_message_length
+    shift = Shift.new
+    message = 'Hi Ruby!'
+
+    shift.stubs(:key => "12345")
+    shift.stubs(:date => "040895")
+
+    assert_equal [13,23,36,50,13,23,36,50], shift.shift_size(message)
+  end
+
+  def test_original_alphabet
+    shift = Shift.new
+
+    expected = ["a", "b", "c", "d", "e", "f", "g", "h",
+                "i", "j", "k", "l", "m", "n", "o", "p",
+                "q", "r", "s", "t", "u", "v", "w", "x",
+                "y", "z", " "]
+
+    assert_equal expected, shift.og_alpha
   end
 end

@@ -28,7 +28,21 @@ class Shift
     both
   end
 
-  def message(greeting)
-    greeting.downcase.split(//)
+  def message(message)
+    message.downcase.split(//)
+  end
+
+  def shift_size(message)
+    shifts = combine
+    size = []
+    message.length.times do
+      size << shifts[0]
+      shifts.rotate!
+    end
+    size
+  end
+
+  def og_alpha
+    ("a".."z").to_a << " "
   end
 end
