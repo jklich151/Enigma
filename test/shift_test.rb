@@ -92,4 +92,14 @@ class ShiftTest < Minitest::Test
 
     assert_equal expected, shift.og_alpha
   end
+
+  def test_can_shift_by_combine_key
+    shift = Shift.new
+    message = 'Hi Ruby!'
+
+    shift.stubs(:key => "12345")
+    shift.stubs(:date => "040895")
+
+    assert_equal 'ueingyg!', shift.new_message(message)
+  end
 end
