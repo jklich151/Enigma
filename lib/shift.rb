@@ -55,4 +55,15 @@ class Shift
     divided = message(message)
     divided.map.with_index(0).to_a
   end
+
+  def shift_letter(message)
+    shifted_alpha = message(message).map.with_index do |char, index|
+      og_alpha.rotate(shift_size(message)[index])
+    end
+    shifted_alpha
+  end
+
+  def new_message(message)
+    message.tr(og_alpha, shift_letter(message))
+  end
 end
