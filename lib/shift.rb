@@ -30,6 +30,7 @@ class Shift
 
   def message(message)
     split_message = message.downcase.split(//)
+    split_message
   end
 
   def shift_size(message)
@@ -44,5 +45,14 @@ class Shift
 
   def og_alpha
     ("a".."z").to_a << " "
+  end
+
+  def combine_index
+    combine.map.with_index(0).to_a
+  end
+
+  def message_index(message)
+    divided = message(message)
+    divided.map.with_index(0).to_a
   end
 end
