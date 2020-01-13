@@ -29,7 +29,7 @@ class Shift
   end
 
   def message(message)
-    message.downcase.split(//)
+    split_message = message.downcase.split(//)
   end
 
   def shift_size(message)

@@ -93,6 +93,17 @@ class ShiftTest < Minitest::Test
     assert_equal expected, shift.og_alpha
   end
 
+  def test_give_index
+    shift = Shift.new
+    message = 'Hi Ruby!'
+
+    shift.stubs(:key => "12345")
+    shift.stubs(:date => "040895")
+
+    assert_equal [[13,0][23,1][36,2][50,3]], shift.combine_index
+    assert_equal [["h",0]["i",1][" ",2]["r",3]["u",4]["b",5]["y",6]["!",7]], shift.message_index
+  end
+
   def test_can_shift_by_combine_key
     shift = Shift.new
     message = 'Hi Ruby!'
