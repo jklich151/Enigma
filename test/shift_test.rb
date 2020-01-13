@@ -67,7 +67,72 @@ class ShiftTest < Minitest::Test
 
   def test_message
     shift = Shift.new
+    message = 'Hi Ruby!'
 
-    assert_equal ['h','i',' ','r','u','b','y','!'], shift.message('Hi Ruby!')
+    assert_equal ['h','i',' ','r','u','b','y','!'], shift.message(message)
+  end
+
+  def test_create_shift_for_message_length
+    shift = Shift.new
+    message = 'Hi Ruby!'
+
+    shift.stubs(:key => "12345")
+    shift.stubs(:date => "040895")
+
+    assert_equal [13,23,36,50,13,23,36,50], shift.shift_size(message)
+  end
+
+  def test_original_alphabet
+    shift = Shift.new
+
+    expected = ["a", "b", "c", "d", "e", "f", "g", "h",
+                "i", "j", "k", "l", "m", "n", "o", "p",
+                "q", "r", "s", "t", "u", "v", "w", "x",
+                "y", "z", " "]
+
+    assert_equal expected, shift.og_alpha
+  end
+
+  def test_give_index
+    shift = Shift.new
+    message = 'Hi Ruby!'
+
+    shift.stubs(:key => "12345")
+    shift.stubs(:date => "040895")
+
+    expected = [[13, 0], [23, 1], [36, 2], [50, 3]]
+    expected2 = [["h", 0], ["i", 1], [" ", 2], ["r", 3], ["u", 4], ["b", 5], ["y", 6], ["!", 7]]
+
+    assert_equal expected, shift.combine_index
+    assert_equal expected2, shift.message_index(message)
+  end
+
+  def test_can_get_each_shifted_alphabet
+    shift = Shift.new
+    message = 'Hi Ruby!'
+
+    shift.stubs(:key => "12345")
+    shift.stubs(:date => "040895")
+
+    expected = [["n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"],
+                ["x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w"],
+                ["j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i"],
+                ["x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w"],
+                ["n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"],
+                ["x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w"],
+                ["j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i"],
+                ["x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w"]]
+
+    assert_equal expected, shift.shift_letter(message)
+  end
+
+  def test_can_shift_by_combine_key
+    shift = Shift.new
+    message = 'Hi Ruby!'
+
+    shift.stubs(:key => "12345")
+    shift.stubs(:date => "040895")
+
+    assert_equal 'ueingyg!', shift.new_message(message)
   end
 end
