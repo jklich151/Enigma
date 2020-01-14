@@ -13,7 +13,7 @@ class ShiftTest < Minitest::Test
   def test_has_attributes
     shift = Shift.new
 
-    assert_instance_of Array, shift.key
+    assert_instance_of String, shift.key
     assert_equal 5, shift.key.length
     assert_equal 6, shift.date.length
   end
