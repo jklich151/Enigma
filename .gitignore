@@ -2,3 +2,4 @@
 coverage/
 
 #tells git to ignore our simplecov tests, helps with memory usage and test runtime
+.DS_Store
