@@ -28,9 +28,8 @@ class Shift
     both
   end
 
-  def message(message)
-    split_message = message.downcase.split(//)
-    split_message
+  def split_message(message)
+    message.downcase.split(//)
   end
 
   def shift_size(message)
@@ -52,18 +51,19 @@ class Shift
   end
 
   def message_index(message)
-    divided = message(message)
+    divided = split_message(message)
     divided.map.with_index(0).to_a
   end
 
-  def shift_letter(message)
-    shifted_alpha = message(message).map.with_index do |char, index|
+  def shifted_alpha(message)
+    split_message(message).map.with_index do |char, index|
       og_alpha.rotate(shift_size(message)[index])
     end
-    shifted_alpha
   end
 
   def new_message(message)
-    message.tr(og_alpha, shift_letter(message))
+    split_message(message).map.with_index do |char, index|
+      char.tr(og_alpha.join, shifted_alpha(message)[index].join)
+    end.join
   end
 end

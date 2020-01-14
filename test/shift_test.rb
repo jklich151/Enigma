@@ -69,7 +69,7 @@ class ShiftTest < Minitest::Test
     shift = Shift.new
     message = 'Hi Ruby!'
 
-    assert_equal ['h','i',' ','r','u','b','y','!'], shift.message(message)
+    assert_equal ['h','i',' ','r','u','b','y','!'], shift.split_message(message)
   end
 
   def test_create_shift_for_message_length
@@ -123,7 +123,7 @@ class ShiftTest < Minitest::Test
                 ["j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i"],
                 ["x", "y", "z", " ", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w"]]
 
-    assert_equal expected, shift.shift_letter(message)
+    assert_equal expected, shift.shifted_alpha(message)
   end
 
   def test_can_shift_by_combine_key
