@@ -132,6 +132,7 @@ class ShiftTest < Minitest::Test
 
     shift.stubs(:key => "12345")
     shift.stubs(:date => "040895")
+
     assert_equal 'ueingyg!', shift.new_message(message)
   end
 

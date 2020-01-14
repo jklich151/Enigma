@@ -5,6 +5,6 @@ class Enigma
   end
 
   def encrypt(message, key, date)
-
+    # @shift.new_message(message)
   end
 end
