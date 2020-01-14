@@ -66,4 +66,10 @@ class Shift
       char.tr(og_alpha.join, shifted_alpha(message)[index].join)
     end.join
   end
+
+  def change_back(message)
+    split_message(message).map.with_index do |char, index|
+      char.tr(shifted_alpha(message)[index].join, og_alpha.join)
+    end.join
+  end
 end
