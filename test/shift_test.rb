@@ -135,13 +135,13 @@ class ShiftTest < Minitest::Test
     assert_equal 'ueingyg!', shift.new_message(message)
   end
 
-  def test_can_shift_by_inter_patt
+  def test_can_shift_by_inter_pattern_message_key_and_date
     shift = Shift.new
     message = 'Hello World'
 
     shift.stubs(:key => "02715")
     shift.stubs(:date => "040895")
-    
-    assert_equal 'ueingyg!', shift.new_message(message)
+
+    assert_equal 'keder ohulw', shift.new_message(message)
   end
 end
