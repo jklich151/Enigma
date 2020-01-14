@@ -1,7 +1,7 @@
 class Shift
   attr_reader :key, :date
 
-  def initialize(key = Array.new(5){rand(10)}, date = DateTime.now.strftime('%d%m%y'))
+  def initialize(key = rand.to_s[2..6], date = DateTime.now.strftime('%d%m%y'))
     @key = key
     @date = date
   end
