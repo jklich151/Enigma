@@ -93,20 +93,6 @@ class ShiftTest < Minitest::Test
     assert_equal expected, shift.og_alpha
   end
 
-  def test_give_index
-    shift = Shift.new
-    message = 'Hi Ruby!'
-
-    shift.stubs(:key => "12345")
-    shift.stubs(:date => "040895")
-
-    expected = [[13, 0], [23, 1], [36, 2], [50, 3]]
-    expected2 = [["h", 0], ["i", 1], [" ", 2], ["r", 3], ["u", 4], ["b", 5], ["y", 6], ["!", 7]]
-
-    assert_equal expected, shift.combine_index
-    assert_equal expected2, shift.message_index(message)
-  end
-
   def test_can_get_each_shifted_alphabet
     shift = Shift.new
     message = 'Hi Ruby!'
@@ -148,11 +134,11 @@ class ShiftTest < Minitest::Test
 
   def test_can_decrypt
     shift = Shift.new
-    message = 'keder ohulw'
+    message = 'ueingyg!'
 
-    shift.stubs(:key => "02715")
+    shift.stubs(:key => "12345")
     shift.stubs(:date => "040895")
 
-    assert_equal 'hello world', shift.change_back(message)
+    assert_equal 'hi ruby!', shift.change_back(message)
   end
 end
