@@ -46,15 +46,6 @@ class Shift
     ("a".."z").to_a << " "
   end
 
-  def combine_index
-    combine.map.with_index(0).to_a
-  end
-
-  def message_index(message)
-    divided = split_message(message)
-    divided.map.with_index(0).to_a
-  end
-
   def shifted_alpha(message)
     split_message(message).map.with_index do |char, index|
       og_alpha.rotate(shift_size(message)[index])
