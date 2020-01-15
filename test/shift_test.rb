@@ -134,11 +134,11 @@ class ShiftTest < Minitest::Test
 
   def test_can_decrypt
     shift = Shift.new
-    message = 'keder ohulw'
+    message = 'ueingyg!'
 
-    shift.stubs(:key => "02715")
+    shift.stubs(:key => "12345")
     shift.stubs(:date => "040895")
 
-    assert_equal 'hello world', shift.change_back(message)
+    assert_equal 'hi ruby!', shift.change_back(message)
   end
 end
